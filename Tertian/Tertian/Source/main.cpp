@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    g_SDLwindow = SDL_SetVideoMode(1280, 800, 32, SDL_SWSURFACE);
+    g_SDLwindow = SDL_SetVideoMode(1024, 768, 32, SDL_SWSURFACE);
 
     if(g_SDLwindow)
     {
