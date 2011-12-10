@@ -98,6 +98,7 @@
     <ClInclude Include="Source\SDLApplication.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Utilities\GlobalDefines.h" />
+    <ClInclude Include="Source\Utilities\MathUtils.h" />
     <ClInclude Include="Source\Utilities\SDLUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
