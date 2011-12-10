@@ -3,7 +3,7 @@
 
 #include "Utilities/SDLUtils.h"
 #include "SDLApplication.h"
-
+#include "Utilities/GlobalDefines.h"
 
 SDL_Surface* g_SDLwindow;
 SDLApplication sdlApp;
