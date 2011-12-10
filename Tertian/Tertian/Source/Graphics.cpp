@@ -14,8 +14,8 @@ Graphics::~Graphics(){}
 //Initialization routine for the graphics core
 bool Graphics::Initialize(){
     
-    SDL_Init(SDL_INIT_VIDEO);
-    m_screen = SDL_SetVideoMode(1280, 800, 32, SDL_SWSURFACE);
+   /* SDL_Init(SDL_INIT_VIDEO);
+    m_screen = SDL_SetVideoMode(1280, 800, 32, SDL_SWSURFACE);*/
     m_buffer = SDL_LoadBMP("hello.bmp");
     SDL_BlitSurface(m_buffer, NULL, m_screen, NULL);
     SDL_Flip(m_screen);

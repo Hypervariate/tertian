@@ -3,13 +3,21 @@
 
 #include "SDL.h"
 
-class Timer{
+class Timer
+{
+private:
+    Uint64      m_cntsps;   // counts per sec
+    float       m_scpc;     // secs per count
+
+    Uint64      m_currTs;   // current time stamp
+    Uint64      m_prevTs;   // previous time stamp
+
+
 public:
     Timer();
     ~Timer();
 
-    static Uint32 GetTicks();       //Get the number of milliseconds since program start
-    static void Delay(Uint32 milliseconds); //Delay execution for n number of milliseconds
+    float GetDt();
 
 
 };

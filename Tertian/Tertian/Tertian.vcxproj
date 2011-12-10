@@ -89,11 +89,14 @@
   <ItemGroup>
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\SDLApplication.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics.h" />
+    <ClInclude Include="Source\SDLApplication.h" />
     <ClInclude Include="Source\Timer.h" />
+    <ClInclude Include="Source\Utilities\SDLUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

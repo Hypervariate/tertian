@@ -22,6 +22,9 @@
     <Filter Include="Core\Source Files">
       <UniqueIdentifier>{ee4531ce-22fa-46dc-8e33-70cb1885f960}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{fb03491c-5a8f-4065-974f-3cc79e1fbe29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -33,6 +36,9 @@
     <ClCompile Include="Source\Graphics.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SDLApplication.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics.h">
@@ -40,6 +46,12 @@
     </ClInclude>
     <ClInclude Include="Source\Timer.h">
       <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SDLApplication.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\SDLUtils.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
