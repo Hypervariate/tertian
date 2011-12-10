@@ -19,6 +19,9 @@ int main(int argc, char *argv[])
         return 0;
     }
 
+
+    //// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
     g_SDLwindow = SDL_SetVideoMode(1280, 800, 32, SDL_SWSURFACE);
 
     if(g_SDLwindow)
