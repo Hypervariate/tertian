@@ -53,5 +53,11 @@
     <ClInclude Include="Source\Utilities\SDLUtils.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Utilities\GlobalDefines.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\MathUtils.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
