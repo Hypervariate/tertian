@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     cout << "woo!";
 
     Graphics::Initialize();
-    Timer::Delay(1000);
+    Timer::Delay(2000);
     Graphics::Deinitialize();
 
     SDL_Quit();
