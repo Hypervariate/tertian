@@ -16,24 +16,30 @@
     <Filter Include="Core">
       <UniqueIdentifier>{81cb70d1-9f9b-4231-8dd4-e310318f25ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Header Files">
+      <UniqueIdentifier>{3530e50d-c14a-42d0-b8e4-de9e3c9f88b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Source Files">
+      <UniqueIdentifier>{ee4531ce-22fa-46dc-8e33-70cb1885f960}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="Source\Timer.cpp">
+      <Filter>Core\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="Source\Graphics.cpp">
+      <Filter>Core\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graphics.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="Source\Graphics.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="Source\Timer.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
