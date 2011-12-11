@@ -1,8 +1,11 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
+
 #include "SDL.h"
 #include "SDL_ttf.h"
+
+#include "Utilities/GlobalDefines.h"
 
 #include <iostream>
 #include <vector>

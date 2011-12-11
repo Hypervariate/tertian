@@ -16,22 +16,58 @@ Graphics::~Graphics(){}
 //Initialization routine for the graphics core
 bool Graphics::Initialize()
 {
-    if(TTF_Init()==-1) {
-        cout << "SDL_ttf failed to initialize.\n";
+
+
+    if(TTF_Init()==-1) 
+    {
+        cout << TTF_GetError();
         return false;
     }
+
     LoadFont("acknowledge");
 
-    SDL_Init(SDL_INIT_VIDEO);
-    m_buffer = SDL_LoadBMP("hello.bmp");
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) 
+    {
+        cout <<  SDL_GetError();
+        return false;
+    }
+    
+    m_screen = SDL_SetVideoMode(WINDOW_WIDTH,WINDOW_HEIGHT,SCREEN_BPP,SDL_SWSURFACE);
 
+    if(m_screen == NULL)
+    {
+        cout <<  SDL_GetError();
+        return false;
+    }
 
-   /* SDL_Color color;
-    color.r = 1;
+    Uint32 rmask, gmask, bmask, amask;
+    #if SDL_BYTEORDER == SDL_BIG_ENDIAN
+        rmask = 0xff000000;
+        gmask = 0x00ff0000;
+        bmask = 0x0000ff00;
+        amask = 0x000000ff;
+    #else
+        rmask = 0x000000ff;
+        gmask = 0x0000ff00;
+        bmask = 0x00ff0000;
+        amask = 0xff000000;
+    #endif
+
+    m_buffer = SDL_CreateRGBSurface(    SDL_SWSURFACE, 
+                                        m_screen->clip_rect.w, 
+                                        m_screen->clip_rect.h, 
+                                        SCREEN_BPP, 
+                                        rmask, gmask, bmask, amask);
+    
+   
+    //apply the surface to the screen
+    
+    SDL_Color color;
+    color.r = 255;
     color.g = 1;
     color.b = 1;
     m_fontBuffer = TTF_RenderText_Solid(m_fonts.at(0), "Rendering a ttf font print, bro!", color);
-    SDL_BlitSurface(m_fontBuffer, NULL, m_buffer, NULL);*/
+    SDL_BlitSurface(m_fontBuffer, NULL, m_buffer, NULL);
     
     
     
