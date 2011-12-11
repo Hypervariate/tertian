@@ -9,7 +9,6 @@
 
 #if defined(_SDL_H)
 #else
-#error test
 #include<SDL.h>
 #endif
 
