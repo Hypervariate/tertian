@@ -19,6 +19,7 @@ private:
 
 
     static vector<TTF_Font*> m_fonts;
+    static SDL_Color m_fontColor;
 
 public:
     Graphics();
@@ -28,6 +29,9 @@ public:
     static bool Deinitialize();
     
     static bool LoadFont(const char* font_name);
+    static void Print(char* text, int x, int y, int font = 0);
+
+    static void SetFontColor(Uint8 red = 127, Uint8 green = 127, Uint8 blue = 127);
 
 };
 

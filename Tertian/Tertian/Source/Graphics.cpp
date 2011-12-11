@@ -4,6 +4,7 @@ SDL_Surface *Graphics::m_buffer;    //back buffer
 SDL_Surface *Graphics::m_screen;    //screen buffer
 SDL_Surface *Graphics::m_fontBuffer;    //buffer for blitting fonts
 vector<TTF_Font*> Graphics::m_fonts;
+SDL_Color Graphics::m_fontColor;
 
 //------------------------------------------------------
 //Graphics core constructor
@@ -61,18 +62,12 @@ bool Graphics::Initialize()
     
    
     //apply the surface to the screen
+    SetFontColor(255, 0, 0);
+    Print("Testing.",WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+    Print("Testing.",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+12);
+    Print("Testing.",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+24);
     
-    SDL_Color color;
-    color.r = 255;
-    color.g = 1;
-    color.b = 1;
-    m_fontBuffer = TTF_RenderText_Solid(m_fonts.at(0), "Rendering a ttf font print, bro!", color);
-    SDL_BlitSurface(m_fontBuffer, NULL, m_buffer, NULL);
-    
-    
-    
-    
-    SDL_BlitSurface(m_buffer, NULL, m_screen, NULL);
+    SDL_BlitSurface(m_buffer, &m_buffer->clip_rect, m_screen, &m_screen->clip_rect);
     SDL_Flip(m_screen);
 
    
@@ -119,4 +114,18 @@ bool Graphics::LoadFont(const char* font_name)
     m_fonts.push_back(font);
     
     return true;
+}
+void Graphics::Print(char* text, int x, int y, int font)
+{
+    SDL_FreeSurface(m_fontBuffer);
+    m_fontBuffer = TTF_RenderText_Solid(m_fonts.at(font), text, m_fontColor);
+    m_fontBuffer->clip_rect.x = x;
+    m_fontBuffer->clip_rect.y = y;
+    SDL_BlitSurface(m_fontBuffer, NULL, m_buffer, &m_fontBuffer->clip_rect);
+}
+void Graphics::SetFontColor(Uint8 red, Uint8 green, Uint8 blue)
+{
+    m_fontColor.r = red;
+    m_fontColor.g = green;
+    m_fontColor.b = blue;
 }
