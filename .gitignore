@@ -22,3 +22,12 @@ Thumbs.db
 *.log
 *.rc
 *.idb
+
+
+
+# Directories #
+######################
+Tertian/Debug
+Tertian/Release
+Tertian/Tertian/Debug
+Tertian/Tertian/Release
