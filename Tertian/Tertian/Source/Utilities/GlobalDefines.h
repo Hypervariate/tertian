@@ -13,6 +13,8 @@
 #include<SDL.h>
 #endif
 
+
+
 static SDL_Window* g_SDLwindow = 0;
 
 #endif
