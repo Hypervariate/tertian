@@ -29,7 +29,9 @@ void SDLApplication::Initialize()
 
 void SDLApplication::Update()
 {
-
+    
+    Keyboard::PollForEvents();
+    
 
 }
 

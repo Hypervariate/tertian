@@ -39,6 +39,9 @@
     <ClCompile Include="Source\SDLApplication.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics.h">
@@ -58,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="Source\Utilities\MathUtils.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

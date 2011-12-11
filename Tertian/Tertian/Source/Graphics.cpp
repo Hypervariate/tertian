@@ -18,6 +18,11 @@ Graphics::~Graphics(){}
 bool Graphics::Initialize()
 {
 
+     if (SDL_Init(SDL_INIT_VIDEO) < 0) 
+    {
+        cout <<  SDL_GetError();
+        return false;
+    }
 
     if(TTF_Init()==-1) 
     {
@@ -27,19 +32,12 @@ bool Graphics::Initialize()
 
     LoadFont("acknowledge");
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) 
-    {
-        cout <<  SDL_GetError();
-        return false;
-    }
+   
     
     m_screen = SDL_SetVideoMode(WINDOW_WIDTH,WINDOW_HEIGHT,SCREEN_BPP,SDL_SWSURFACE);
 
-    if(m_screen == NULL)
-    {
-        cout <<  SDL_GetError();
-        return false;
-    }
+    
+    
 
     Uint32 rmask, gmask, bmask, amask;
     #if SDL_BYTEORDER == SDL_BIG_ENDIAN
@@ -61,11 +59,14 @@ bool Graphics::Initialize()
                                         rmask, gmask, bmask, amask);
     
    
+
     //apply the surface to the screen
     SetFontColor(255, 0, 0);
-    Print("Testing.",WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-    Print("Testing.",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+12);
-    Print("Testing.",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+24);
+
+    Graphics::Print("Testing",WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+    Graphics::Print("Testing",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+12);
+    Graphics::Print("Testing",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+24);
+    
     
     SDL_BlitSurface(m_buffer, &m_buffer->clip_rect, m_screen, &m_screen->clip_rect);
     SDL_Flip(m_screen);
