@@ -7,6 +7,14 @@
 #define WINDOW_HEIGHT 768
 #define SCREEN_BPP 32
 
+
+#if defined(_SDL_H)
+#else
+#include<SDL.h>
+#endif
+
+
+
 static SDL_Window* g_SDLwindow = 0;
 
 #endif
