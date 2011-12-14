@@ -63,9 +63,9 @@ bool Graphics::Initialize()
     //apply the surface to the screen
     SetFontColor(255, 0, 0);
 
-    Graphics::Print("Testing",WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+  /*  Graphics::Print("Testing",WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
     Graphics::Print("Testing",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+12);
-    Graphics::Print("Testing",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+24);
+    Graphics::Print("Testing",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+24);*/
     
     
     SDL_BlitSurface(m_buffer, &m_buffer->clip_rect, m_screen, &m_screen->clip_rect);
@@ -78,6 +78,16 @@ bool Graphics::Initialize()
     
     return true;
 }
+//------------------------------------------------------
+void Graphics::Update()
+{
+	SDL_FillRect(m_screen,NULL, 0x000000); 
+	SDL_BlitSurface(m_buffer, &m_buffer->clip_rect, m_screen, &m_screen->clip_rect);
+	SDL_FillRect(m_buffer,NULL, 0x000000); 
+    SDL_Flip(m_screen);
+
+}
+
 //------------------------------------------------------
 //Deinitialization routine for the graphics core
 bool Graphics::Deinitialize(){
@@ -123,6 +133,13 @@ void Graphics::Print(char* text, int x, int y, int font)
     m_fontBuffer->clip_rect.x = x;
     m_fontBuffer->clip_rect.y = y;
     SDL_BlitSurface(m_fontBuffer, NULL, m_buffer, &m_fontBuffer->clip_rect);
+}
+void Graphics::Print(int i, int x, int y, int font)
+{
+	char buffer[32];
+	//scanf("%d", &i);
+	itoa(i, buffer, 10);
+	Print(buffer, x, y, font);
 }
 void Graphics::SetFontColor(Uint8 red, Uint8 green, Uint8 blue)
 {

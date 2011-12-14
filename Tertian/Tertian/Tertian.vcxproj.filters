@@ -39,7 +39,10 @@
     <ClCompile Include="Source\SDLApplication.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Keyboard.cpp">
+    <ClCompile Include="Source\Keyboard.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mouse.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,7 +65,10 @@
     <ClInclude Include="Source\Utilities\MathUtils.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Keyboard.h">
+    <ClInclude Include="Source\Keyboard.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mouse.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

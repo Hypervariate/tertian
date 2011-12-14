@@ -26,10 +26,12 @@ public:
     ~Graphics();
 
     static bool Initialize();
+	static void Update();
     static bool Deinitialize();
     
     static bool LoadFont(const char* font_name);
     static void Print(char* text, int x, int y, int font = 0);
+	static void Print(int i, int x, int y, int font = 0);
 
     static void SetFontColor(Uint8 red = 127, Uint8 green = 127, Uint8 blue = 127);
 

@@ -31,6 +31,8 @@ void SDLApplication::Update()
 {
     
     Keyboard::PollForEvents();
+	Mouse::PollForEvents();
+	Graphics::Update();
     
 
 }

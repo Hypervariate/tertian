@@ -3,7 +3,8 @@
 #define SDLAPPLICATION_H_
 
 #include "Timer.h"
-#include "../Keyboard.h"
+#include "Keyboard.h"
+#include "Mouse.h"
 
 class SDLApplication
 {
