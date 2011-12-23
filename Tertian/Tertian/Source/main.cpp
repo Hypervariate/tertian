@@ -8,61 +8,54 @@
 #include "SDLApplication.h"
 #include "Utilities/GlobalDefines.h"
 
-
+#include "SDL_gfxPrimitives.h"
 //SDL_Window* g_SDLwindow
 
 SDLApplication sdlApp;
 
 int main(int argc, char *argv[])
 {
+    
+    SDL_Window *win = NULL;
+    SDL_Renderer *renderer = NULL;
+    SDL_Texture *bitmapTex = NULL;
+    SDL_Surface *bitmapSurface = NULL;
+    int posX = 100, posY = 100, width = 320, height = 240;
 
-    g_SDLwindow = SDL_CreateWindow(WINDOW_TITLE, 
-                                   SDL_WINDOWPOS_UNDEFINED,
-                                   SDL_WINDOWPOS_UNDEFINED,
-                                   WINDOW_WIDTH,
-                                   WINDOW_HEIGHT,
-                                   0);
+    win = SDL_CreateWindow("Hello World", posX, posY, width, height, 0);
 
-    if(g_SDLwindow)
-    {
-        sdlApp.Initialize();
+    renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
 
-        while(sdlApp.IsRunning())
-        {
-            
-            
-            if(Keyboard::GetKey("Escape"))
+    bitmapSurface = SDL_LoadBMP("img/hello.bmp");
+    bitmapTex = SDL_CreateTextureFromSurface(renderer, bitmapSurface);
+    SDL_FreeSurface(bitmapSurface);
+
+    while (1) {
+        SDL_Event e;
+        if (SDL_PollEvent(&e)) {
+            if (e.type == SDL_QUIT) {
                 break;
-
-				//mouse demo
-				int i = - 48;
-				Graphics::Print("Mouse",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print("X =",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print("Y =",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print("L =",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print("M =",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print("R =",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print("W =",WINDOW_WIDTH/2, WINDOW_HEIGHT/2+i); i+=12;
-				 i = - 36;
-			
-				Graphics::Print((int)Mouse::GetX(),WINDOW_WIDTH/2+24, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print((int)Mouse::GetY(),WINDOW_WIDTH/2+24, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print((int)Mouse::GetMouseButtonLeft(),WINDOW_WIDTH/2+24, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print((int)Mouse::GetMouseButtonMiddle(),WINDOW_WIDTH/2+24, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print((int)Mouse::GetMouseButtonRight(),WINDOW_WIDTH/2+24, WINDOW_HEIGHT/2+i); i+=12;
-				Graphics::Print((int)Mouse::GetMouseWheelDirection(),WINDOW_WIDTH/2+24, WINDOW_HEIGHT/2+i); i+=12;
-			
-			sdlApp.Update();
+            }       
         }
 
-        sdlApp.Shutdown();
+        
 
-
+        SDL_RenderClear(renderer);
+        SDL_SetRenderDrawColor(renderer, 255, 127, 0, 255);
+        SDL_RenderDrawLine(renderer, 0, 0, width, height);
+        lineRGBA(renderer, 
+            0, 0, 
+            width, height, 
+            255, 0, 0, 255);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        //SDL_RenderCopy(renderer, bitmapTex, NULL, NULL);
+        SDL_RenderPresent(renderer);
     }
-    
- 
-    SDL_Quit();
-    
+
+    SDL_DestroyTexture(bitmapTex);
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(win);
+
     return 0;
 }
 
