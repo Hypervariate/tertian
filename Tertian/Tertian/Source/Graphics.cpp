@@ -6,6 +6,7 @@ SDL_Surface *Graphics::m_fontBuffer;    //buffer for blitting fonts
 vector<TTF_Font*> Graphics::m_fonts;
 SDL_Color Graphics::m_fontColor;
 SDL_Renderer *Graphics::m_renderer = NULL;
+SDL_Texture *Graphics::m_bufferTexture;
 //------------------------------------------------------
 //Graphics core constructor
 Graphics::Graphics(){}
@@ -15,7 +16,7 @@ Graphics::Graphics(){}
 Graphics::~Graphics(){}
 //------------------------------------------------------
 //Initialization routine for the graphics core
-bool Graphics::Initialize()
+bool Graphics::Initialize(SDL_Window* window)
 {
 
     
@@ -30,11 +31,23 @@ bool Graphics::Initialize()
 
    
     
-    m_screen = SDL_SetVideoMode(WINDOW_WIDTH,WINDOW_HEIGHT,SCREEN_BPP,SDL_SWSURFACE);
+    //m_screen = SDL_SetVideoMode(WINDOW_WIDTH,WINDOW_HEIGHT,SCREEN_BPP,SDL_SWSURFACE);
+    m_renderer = NULL;
+    m_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	
+	
+
+	m_buffer = NULL;
+	m_buffer = SDL_LoadBMP("img/hello.bmp");
+	
     
-    m_renderer = SDL_CreateRenderer(g_SDLwindow, -1, SDL_RENDERER_ACCELERATED);
-    
-    SDL_RenderDrawLine(m_renderer, 200, 200, 600, 600);
+	m_bufferTexture = NULL;
+	m_bufferTexture = SDL_CreateTextureFromSurface(m_renderer, m_buffer);
+	
+
+    /*m_buffer = SDL_LoadBMP("img/hello.bmp");
+    bitmapTex = SDL_CreateTextureFromSurface(renderer, m_buffer);
+    SDL_FreeSurface(m_buffer);*/
     
 
     Uint32 rmask, gmask, bmask, amask;
@@ -50,41 +63,36 @@ bool Graphics::Initialize()
         amask = 0xff000000;
     #endif
 
-    m_buffer = SDL_CreateRGBSurface(    SDL_SWSURFACE, 
+   /* m_buffer = SDL_CreateRGBSurface(    SDL_SWSURFACE, 
                                         m_screen->clip_rect.w, 
                                         m_screen->clip_rect.h, 
                                         SCREEN_BPP, 
-                                        rmask, gmask, bmask, amask);
+                                        rmask, gmask, bmask, amask);*/
     
    
-
     //apply the surface to the screen
     SetFontColor(255, 0, 0);
 
-  
-   
-   
-  
-    
-
-    
-
-   
-       
-    
-    
-    
     return true;
 }
 //------------------------------------------------------
 void Graphics::Update()
 {
-	SDL_FillRect(m_screen,NULL, 0x777777); 
-	SDL_BlitSurface(m_buffer, &m_buffer->clip_rect, m_screen, &m_screen->clip_rect);
-    SDL_RenderDrawLine(m_renderer, 200, 200, 600, 600);
-	SDL_FillRect(m_buffer,NULL, 0x777777); 
-    SDL_Flip(m_screen);
-    SDL_RenderDrawLine(m_renderer, 200, 200, 600, 600);
+	
+	
+	SDL_DestroyTexture(m_bufferTexture);
+	m_bufferTexture = SDL_CreateTextureFromSurface(m_renderer, m_fontBuffer);
+	
+	SDL_RenderClear(m_renderer);
+
+	SDL_RenderCopy(m_renderer, m_bufferTexture, NULL, NULL);
+
+    SDL_SetRenderDrawColor(m_renderer, 255, 127, 0, 255);
+    SDL_RenderDrawLine(m_renderer, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+	SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
+	
+	SDL_RenderPresent(m_renderer);
+
 
 }
 
@@ -92,7 +100,8 @@ void Graphics::Update()
 //Deinitialization routine for the graphics core
 bool Graphics::Deinitialize(){
     SDL_FreeSurface(m_buffer);
-    SDL_FreeSurface(m_screen);
+    SDL_DestroyTexture(m_bufferTexture);
+	SDL_FreeSurface(m_screen);
 
     TTF_Font* font;
     for(int i = m_fonts.size()-1; i > -1 ; i--)
@@ -101,6 +110,9 @@ bool Graphics::Deinitialize(){
         TTF_CloseFont(font);
         font=NULL;
     }
+
+	
+    SDL_DestroyRenderer(m_renderer);
 
     return true;
 }

@@ -15,6 +15,7 @@ using namespace std;
 class Graphics{
 private:
     static SDL_Surface *m_buffer;        //back buffer
+	static SDL_Texture *m_bufferTexture; //new back buffer
     static SDL_Surface *m_screen;        //screen buffer
     static SDL_Surface *m_fontBuffer;    //buffer for blitting fonts
     static SDL_Renderer *m_renderer;
@@ -27,7 +28,7 @@ public:
     Graphics();
     ~Graphics();
 
-    static bool Initialize();
+    static bool Initialize(SDL_Window* window);
 	static void Update();
     static bool Deinitialize();
 
