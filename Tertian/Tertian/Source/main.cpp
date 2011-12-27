@@ -82,8 +82,19 @@ int main(int argc, char *argv[])
 	sdlApp.Initialize(g_SDLwindow);
 
     while (!Keyboard::GetKey("Escape") ) {
+		Graphics::SetDrawColor(255, 127, 0);
+		
+		////Sample primatives
+		/*Graphics::Print("Hi!", WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+		Graphics::DrawLine(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+		Graphics::DrawRect();
+		Graphics::DrawFillRect(32,32);
+		Graphics::DrawPoint(64, 16);*/
+
+		Graphics::DrawLevelBlock(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+
 		sdlApp.Update();
-		Graphics::Print("Hi!", WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+		
 		
     }
     

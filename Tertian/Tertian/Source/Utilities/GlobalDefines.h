@@ -7,6 +7,7 @@
 #define WINDOW_HEIGHT 240
 #define SCREEN_BPP 32
 
+#define PI 3.14159265
 
 #if defined(_SDL_H)
 #else
