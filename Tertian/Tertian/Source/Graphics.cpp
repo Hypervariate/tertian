@@ -153,12 +153,12 @@ void Graphics::DrawLevelBlock(int x, int y){
 	DrawLine(x - width, y,			x,				y - size); //45
 	DrawLine(x - width, y,			x,				y + size); //310
 	DrawLine(x - width, y + height,	x,				y + size + height); //310
-	DrawLine(x - width, y + height,	x - width,	y); //90
+	DrawLine(x - width, y + height,	x - width,		y); //90
 
 	DrawLine(x + width, y,			x,				y - size); //45
 	DrawLine(x + width, y,			x,				y + size); //310
 	DrawLine(x + width, y + height,	x,				y + size + height); //310
-	DrawLine(x + width, y + height,	x + width,	y); //90
+	DrawLine(x + width, y + height,	x + width,		y); //90
 	
     
 	
