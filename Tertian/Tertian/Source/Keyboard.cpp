@@ -1,22 +1,22 @@
 #include "Keyboard.h"
 
-SDL_Event Keyboard::event;        //event for the listener
+
 map<SDL_Keycode, bool> Keyboard::keys;
 
 Keyboard::Keyboard(){}
 Keyboard::~Keyboard(){}
 
-void Keyboard::PollForEvents()
+void Keyboard::AnalyzeEvents(SDL_Event* event)
 {
-    SDL_PollEvent(&event);
-    switch( event.type )
+    
+    switch( event->type )
     {
         case SDL_KEYDOWN:
-            keys[event.key.keysym.sym] = true;
-            cout << "Key: " << SDL_GetKeyName( event.key.keysym.sym ) << endl;
+            keys[event->key.keysym.sym] = true;
+            cout << "Key: " << SDL_GetKeyName( event->key.keysym.sym ) << endl;
             break;
         case SDL_KEYUP:
-            keys[event.key.keysym.sym] = false;
+            keys[event->key.keysym.sym] = false;
             break;
 
         default:

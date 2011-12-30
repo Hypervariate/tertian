@@ -10,19 +10,19 @@ int Mouse::m_mouseWheelScrollDirection = 0;
 int Mouse::m_x = 0;
 int Mouse::m_y = 0;
 
-SDL_Event Mouse::event;
+
 
 Mouse::Mouse(){}
 Mouse::~Mouse(){}
 
 
-void Mouse::PollForEvents()
+void Mouse::AnalyzeEvents(SDL_Event* event)
 {
 
-	SDL_PollEvent(&event);
+	
 
 	//mouse coordinates
-	switch( event.type )
+	switch( event->type )
     {
 		case SDL_MOUSEMOTION:
 			SDL_GetMouseState(&m_x, &m_y);
@@ -33,7 +33,7 @@ void Mouse::PollForEvents()
 	
 	//mouse wheel
 	m_mouseWheelScrollDirection = 0;
-	switch( event.button.button )
+	switch( event->button.button )
     {
 		case SDL_BUTTON_WHEELUP:
 			m_mouseWheelScrollDirection = 1;

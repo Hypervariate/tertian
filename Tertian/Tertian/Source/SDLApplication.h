@@ -11,7 +11,7 @@ class SDLApplication
 private:
     Timer   m_timer;
     bool    m_bRunning;
-
+	static SDL_Event event;        //event for the listener
 
     // Todo:: Include Application States
 

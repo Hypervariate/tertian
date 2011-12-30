@@ -2,7 +2,7 @@
 
 #include "Graphics.h"
 
-
+SDL_Event SDLApplication::event;        //event for the listener
 
 SDLApplication::SDLApplication()
 {
@@ -29,9 +29,22 @@ void SDLApplication::Initialize(SDL_Window* window)
 
 void SDLApplication::Update()
 {
-    
-    Keyboard::PollForEvents();
-	Mouse::PollForEvents();
+    SDL_PollEvent(&event);
+
+	switch(event.type){
+		case SDL_QUIT:
+			m_bRunning = false;
+			break;
+	}
+	
+
+    Keyboard::AnalyzeEvents(&event);
+
+	if(Keyboard::GetKey("Escape"))
+		m_bRunning = false;
+
+	Mouse::AnalyzeEvents(&event);
+
 	Graphics::Update();
     
 
@@ -44,3 +57,4 @@ void SDLApplication::Shutdown()
 
     m_bRunning = false;
 }
+

@@ -14,13 +14,13 @@ public:
     Keyboard();
     ~Keyboard();
 
-    static void PollForEvents();
+    static void AnalyzeEvents(SDL_Event* event);
     static bool GetKey(const char* key_name);
     static void PrintKeyInfo( SDL_KeyboardEvent *key );
 
 private:
     static map<SDL_Keycode, bool> keys;
-    static SDL_Event event;        //event for the listener
+    
 
 };
 

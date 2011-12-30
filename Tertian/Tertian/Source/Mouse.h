@@ -11,7 +11,7 @@ public:
 	Mouse();
 	~Mouse();
 
-	static void PollForEvents();
+	static void AnalyzeEvents(SDL_Event* event);
 
 	static int GetX();
 	static int GetY();
@@ -35,7 +35,7 @@ private:
 	static int m_x;
 	static int m_y;
 
-	static SDL_Event event;	//event for the listener
+	
 
 };
 #endif

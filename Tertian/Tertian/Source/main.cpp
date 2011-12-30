@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
 	sdlApp.Initialize(g_SDLwindow);
 
-    while (!Keyboard::GetKey("Escape") ) {
+    while (sdlApp.IsRunning()) {
 		Graphics::SetDrawColor(255, 127, 0);
 		
 		if(Keyboard::GetKey("Up"))
