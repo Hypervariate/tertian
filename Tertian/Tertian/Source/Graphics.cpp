@@ -3,10 +3,12 @@
 SDL_Surface *Graphics::m_buffer;		//back buffer
 SDL_Surface *Graphics::m_fontBuffer;    //buffer for blitting fonts
 vector<TTF_Font*> Graphics::m_fonts;	//collection of all loaded fonts
+vector<SDL_Surface*> Graphics::m_images;
 SDL_Color Graphics::m_drawColor;	
 SDL_Renderer *Graphics::m_renderer = NULL;
 SDL_Texture *Graphics::m_bufferTexture;
 SDL_Rect Graphics::m_tempRect;
+bool Graphics::renderTextures = true;
 //------------------------------------------------------
 //Graphics core constructor
 Graphics::Graphics(){}
@@ -26,12 +28,20 @@ bool Graphics::Initialize(SDL_Window* window)
 
     LoadFont("acknowledge");
 
+	SDL_Surface *image = IMG_Load ( "Data/Images/Test.png" );
+	if ( !image )
+   {
+      cout << "IMG_Load: " <<  IMG_GetError () ;
+      return false;
+   }
+	m_images.push_back(image);
+	
     
     m_renderer = NULL;
     m_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	
 	m_buffer = NULL;
-	
+	m_buffer = SDL_CreateRGBSurface(0,WINDOW_WIDTH,WINDOW_HEIGHT,32,0,0,0,0);
     
 	m_bufferTexture = NULL;
 	m_bufferTexture = SDL_CreateTextureFromSurface(m_renderer, m_buffer);
@@ -43,10 +53,14 @@ bool Graphics::Initialize(SDL_Window* window)
 //------------------------------------------------------
 void Graphics::Update()
 {
-
-	SDL_DestroyTexture(m_bufferTexture);
-	m_bufferTexture = SDL_CreateTextureFromSurface(m_renderer, m_fontBuffer);
-	SDL_RenderCopy(m_renderer, m_bufferTexture, NULL, NULL);
+	
+	SDL_BlitSurface(m_fontBuffer,NULL, m_buffer, NULL);
+	if(renderTextures)
+	{
+		SDL_DestroyTexture(m_bufferTexture);
+		m_bufferTexture = SDL_CreateTextureFromSurface(m_renderer, m_buffer);
+		SDL_RenderCopy(m_renderer, m_bufferTexture, NULL, NULL);
+	}
 	
 	SDL_RenderPresent(m_renderer);
 	ClearBackBuffer();
@@ -55,6 +69,7 @@ void Graphics::Update()
 void Graphics::ClearBackBuffer(){
 	SetDrawColor(0, 0, 0);
 	SDL_RenderClear(m_renderer);
+	SDL_FillRect(m_buffer, NULL, 0);
 }
 //Deinitialization routine for the graphics core
 bool Graphics::Deinitialize(){
@@ -68,6 +83,13 @@ bool Graphics::Deinitialize(){
         font = m_fonts.at(i);
         TTF_CloseFont(font);
         font=NULL;
+    }
+	SDL_Surface* surface;
+    for(int i = m_images.size()-1; i > -1 ; i--)
+    {
+        surface = m_images.at(i);
+        SDL_FreeSurface(surface);
+        surface=NULL;
     }
 
 	
@@ -158,8 +180,16 @@ void Graphics::DrawLevelBlock(int x, int y){
 	DrawLine(x + width, y,			x,				y - size); //45
 	DrawLine(x + width, y,			x,				y + size); //310
 	DrawLine(x + width, y + height,	x,				y + size + height); //310
-	DrawLine(x + width, y + height,	x + width,		y); //90
-	
-    
-	
+	DrawLine(x + width, y + height,	x + width,		y); //90	
+}
+void Graphics::BlitImage(int index, int x, int y){
+	SDL_Surface* image = m_images.at(index);
+	SDL_Rect rcDest = { x - image->w/2, y - image->h/2, 0, 0 };
+	SDL_BlitSurface ( image, NULL, m_buffer, &rcDest );
+}
+void Graphics::RenderTextures(bool true_or_false){
+	renderTextures = true_or_false;
+}
+bool Graphics::IsRenderingTextures(){
+	return renderTextures;
 }

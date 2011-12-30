@@ -5,7 +5,7 @@
 #include "SDL.h"
 #include "SDL_ttf.h"
 #include "SDL_gfxPrimitives.h"
-
+#include "SDL_image.h"
 
 
 #include "Utilities/GlobalDefines.h"
@@ -23,10 +23,11 @@ private:
     static SDL_Renderer *m_renderer;
 
     static vector<TTF_Font*> m_fonts;
+	static vector<SDL_Surface*> m_images;
     static SDL_Color m_drawColor;
 
 	static SDL_Rect m_tempRect;
-    
+    static bool renderTextures;
 
 public:
     Graphics();
@@ -45,11 +46,14 @@ public:
 	static void DrawLevelBlock(int x, int y);
     
     static bool LoadFont(const char* font_name);
-    static void Print(char* text, int x, int y, int font = 0);
-	static void Print(int i, int x, int y, int font = 0);
+    static void Print(char* text, int x = 0, int y = 0, int font = 0);
+	static void Print(int i, int x = 0, int y = 0, int font = 0);
 
     static void SetDrawColor(Uint8 red = 127, Uint8 green = 127, Uint8 blue = 127, Uint8 alpha = 255);
+	static void BlitImage(int index, int x = WINDOW_WIDTH/2, int y = WINDOW_HEIGHT/2);
 
+	static void RenderTextures(bool true_or_false);
+	static bool IsRenderingTextures();
 };
 
 #endif
