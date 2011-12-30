@@ -143,20 +143,23 @@ void Graphics::DrawPoint(int x, int y){
 	SDL_RenderDrawPoint(m_renderer, x, y);
 }
 void Graphics::DrawLevelBlock(int x, int y){
+	int size = 32;
+	int height = (float)2/3*size;
+	int width = size*2;
+	
+
 	DrawPoint(x,y);
 
-	int scale = 64;
-	int half_of_scale = scale/2;
-	int sixth_of_scale = scale/6;
+	DrawLine(x - width, y,			x,				y - size); //45
+	DrawLine(x - width, y,			x,				y + size); //310
+	DrawLine(x - width, y + height,	x,				y + size + height); //310
+	DrawLine(x - width, y + height,	x - width,	y); //90
 
+	DrawLine(x + width, y,			x,				y - size); //45
+	DrawLine(x + width, y,			x,				y + size); //310
+	DrawLine(x + width, y + height,	x,				y + size + height); //310
+	DrawLine(x + width, y + height,	x + width,	y); //90
 	
-
-	/*DrawLine(x - scale, y, x + scale, y);
-	DrawLine(x, y- scale, x, y+ scale);*/
-	
-	float angle = .2;
-	float tx = cos(angle * PI/180) * scale;
-	float ty = sin(angle * PI/180) * scale;
-	DrawLine(x/2, y/2, x + tx, y + ty);
+    
 	
 }

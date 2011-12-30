@@ -92,6 +92,8 @@ int main(int argc, char *argv[])
 		Graphics::DrawPoint(64, 16);*/
 
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 + 64, WINDOW_HEIGHT/2 + 32);
+		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 + 64, WINDOW_HEIGHT/2 - 32);
 
 		sdlApp.Update();
 		
