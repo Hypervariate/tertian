@@ -8,6 +8,7 @@
 #include "Utilities/GlobalDefines.h"
 
 #include "SDL_gfxPrimitives.h"
+#include "Animation.h"
 
 
 SDLApplication sdlApp;
@@ -16,11 +17,14 @@ int main(int argc, char *argv[])
 {
     
     g_SDLwindow = NULL;
-    g_SDLwindow = SDL_CreateWindow("Hello World", 100, 100, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+    g_SDLwindow = SDL_CreateWindow("Tertian", 100, 100, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
 	sdlApp.Initialize(g_SDLwindow);
+	
+	Animation animation;
+	animation.LoadAnimation("librarian_idle");
 
-    while (sdlApp.IsRunning()) {
+    while(sdlApp.IsRunning()) {
 		Graphics::SetDrawColor(255, 127, 0);
 		
 		if(Keyboard::GetKey("Up"))

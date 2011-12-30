@@ -7,7 +7,6 @@
 #include "SDL_gfxPrimitives.h"
 #include "SDL_image.h"
 
-
 #include "Utilities/GlobalDefines.h"
 
 #include <iostream>
