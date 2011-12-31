@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 	
 	Animation animation;
 	animation.LoadAnimation("librarian_idle");
+	int frame_index = 0;
+	char* frame_name;
 
     while(sdlApp.IsRunning()) {
 		Graphics::SetDrawColor(255, 127, 0);
@@ -32,7 +34,9 @@ int main(int argc, char *argv[])
 		if(Keyboard::GetKey("Down"))
 			Graphics::RenderTextures(false);
 
-		Graphics::BlitImage(0);
+		frame_index = ++frame_index % animation.GetFrameCount();
+		frame_name = animation.GetFrameName(frame_index);
+		Graphics::BlitImage(frame_name);
 		
 		Graphics::Print("press [Down] [Up] to toggle textures.", 0, 0);
 		

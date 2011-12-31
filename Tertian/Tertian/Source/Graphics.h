@@ -8,11 +8,16 @@
 #include "SDL_image.h"
 
 #include "Utilities/GlobalDefines.h"
+#include <map>
 
 #include <iostream>
 #include <vector>
 #include <cmath>
+
 using namespace std;
+
+#define IMAGE_DIRECTORY "Data/Images/"
+#define IMAGE_EXTENSION ".png"
 
 class Graphics{
 private:
@@ -22,11 +27,12 @@ private:
     static SDL_Renderer *m_renderer;
 
     static vector<TTF_Font*> m_fonts;
-	static vector<SDL_Surface*> m_images;
     static SDL_Color m_drawColor;
 
 	static SDL_Rect m_tempRect;
     static bool renderTextures;
+
+	static map<char*, SDL_Surface*> m_images;
 
 public:
     Graphics();
@@ -49,10 +55,11 @@ public:
 	static void Print(int i, int x = 0, int y = 0, int font = 0);
 
     static void SetDrawColor(Uint8 red = 127, Uint8 green = 127, Uint8 blue = 127, Uint8 alpha = 255);
-	static void BlitImage(int index, int x = WINDOW_WIDTH/2, int y = WINDOW_HEIGHT/2);
+	static void BlitImage(char* index, int x = WINDOW_WIDTH/2, int y = WINDOW_HEIGHT/2);
 
 	static void RenderTextures(bool true_or_false);
 	static bool IsRenderingTextures();
+	static bool LoadImage(char* image_name);
 };
 
 #endif

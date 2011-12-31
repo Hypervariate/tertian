@@ -1,13 +1,14 @@
 #include "Graphics.h"
 
-SDL_Surface *Graphics::m_buffer;		//back buffer
-SDL_Surface *Graphics::m_fontBuffer;    //buffer for blitting fonts
-vector<TTF_Font*> Graphics::m_fonts;	//collection of all loaded fonts
-vector<SDL_Surface*> Graphics::m_images;
+SDL_Surface *Graphics::m_buffer;		
+SDL_Surface *Graphics::m_fontBuffer;    
+vector<TTF_Font*> Graphics::m_fonts;	
+map<char*, SDL_Surface*> Graphics::m_images;
 SDL_Color Graphics::m_drawColor;	
 SDL_Renderer *Graphics::m_renderer = NULL;
 SDL_Texture *Graphics::m_bufferTexture;
 SDL_Rect Graphics::m_tempRect;
+
 bool Graphics::renderTextures = true;
 //------------------------------------------------------
 //Graphics core constructor
@@ -28,16 +29,7 @@ bool Graphics::Initialize(SDL_Window* window)
 
     LoadFont("acknowledge");
 
-	SDL_Surface *image = IMG_Load ( "Data/Images/Test.png" );
-	if ( !image )
-   {
-      cout << "IMG_Load: " <<  IMG_GetError () ;
-      return false;
-   }
-	m_images.push_back(image);
-	
-    
-    m_renderer = NULL;
+	m_renderer = NULL;
     m_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	
 	m_buffer = NULL;
@@ -85,9 +77,10 @@ bool Graphics::Deinitialize(){
         font=NULL;
     }
 	SDL_Surface* surface;
-    for(int i = m_images.size()-1; i > -1 ; i--)
+	map<char*,SDL_Surface*>::iterator it;
+    for ( it=m_images.begin() ; it != m_images.end(); it++ )
     {
-        surface = m_images.at(i);
+		surface = it->second;
         SDL_FreeSurface(surface);
         surface=NULL;
     }
@@ -182,14 +175,55 @@ void Graphics::DrawLevelBlock(int x, int y){
 	DrawLine(x + width, y + height,	x,				y + size + height); //310
 	DrawLine(x + width, y + height,	x + width,		y); //90	
 }
-void Graphics::BlitImage(int index, int x, int y){
-	SDL_Surface* image = m_images.at(index);
+void Graphics::BlitImage(char* index, int x, int y){
+	bool success = true;
+	if(m_images[index] == NULL)
+		success = LoadImage(index);
+	if(!success){
+		cout << "Could not load image " << index << endl;
+		return;
+	}
+
+	SDL_Surface* image = m_images[index];
 	SDL_Rect rcDest = { x - image->w/2, y - image->h/2, 0, 0 };
 	SDL_BlitSurface ( image, NULL, m_buffer, &rcDest );
+	
+	
+	
+	
 }
 void Graphics::RenderTextures(bool true_or_false){
 	renderTextures = true_or_false;
 }
 bool Graphics::IsRenderingTextures(){
 	return renderTextures;
+}
+bool Graphics::LoadImage(char* image_name)
+{
+	//check if image already exists
+	if(m_images[image_name] != NULL)
+	{
+		SDL_Surface* surface = m_images[image_name];
+        SDL_FreeSurface(surface);
+        surface=NULL;
+	}
+
+	char path[MAX_PATH_LENGTH];
+
+	for(int i = 0; i < MAX_PATH_LENGTH; i++)
+		path[i] = '\0';
+
+	strcat(path, IMAGE_DIRECTORY);
+	strcat(path, image_name);
+	strcat(path, IMAGE_EXTENSION);	
+
+	SDL_Surface *image = IMG_Load ( path );
+	if ( !image )
+    {
+      cout << "IMG_Load: " <<  IMG_GetError () ;
+      return false;
+    }
+	m_images[image_name] = image;
+
+	return true;
 }

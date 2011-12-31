@@ -13,6 +13,8 @@ public:
 	~Animation();
 
 	int LoadAnimation(char* animation_name);
+	char* GetFrameName(unsigned int index);
+	unsigned int GetFrameCount();
 
 private:
 	vector<char*> m_frames;
