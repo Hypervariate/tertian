@@ -44,3 +44,9 @@ unsigned int Animation::GetFrameCount()
 {
 	return m_frames.size();
 }
+bool Animation::UpdateAnimation(float delta_time)
+{
+	cout << delta_time << endl;
+	return false;
+
+}
