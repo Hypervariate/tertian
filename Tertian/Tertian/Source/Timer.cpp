@@ -26,5 +26,7 @@ float Timer::GetDt()
 	float fDt = (m_currTs - m_prevTs)*m_scpc;
 	m_prevTs = m_currTs;
 
+
+
     return fDt;
 }

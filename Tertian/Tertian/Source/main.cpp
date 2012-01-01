@@ -67,6 +67,7 @@
 #include "Utilities/SDLUtils.h"
 #include "SDLApplication.h"
 #include "Utilities/GlobalDefines.h"
+#include "Timer.h"
 
 #include "SDL_gfxPrimitives.h"
 
@@ -80,6 +81,8 @@ int main(int argc, char *argv[])
     g_SDLwindow = SDL_CreateWindow("Hello World", 100, 100, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
 	sdlApp.Initialize(g_SDLwindow);
+
+	Timer time;
 
     while (!Keyboard::GetKey("Escape") ) {
 		Graphics::SetDrawColor(255, 127, 0);
@@ -100,7 +103,11 @@ int main(int argc, char *argv[])
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 + 64, WINDOW_HEIGHT/2 - 53);
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 64);
 
-		sdlApp.Update();
+		sdlApp.Update(time.GetDt());
+
+#if _DEBUG
+	printf("time :%f\n", time.GetDt());
+#endif	
 		
 		
     }
