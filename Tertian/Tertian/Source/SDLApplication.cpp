@@ -17,9 +17,9 @@ SDLApplication::~SDLApplication()
 
 }
 
-void SDLApplication::Initialize()
+void SDLApplication::Initialize(SDL_Window* window)
 {
-    Graphics::Initialize();
+    Graphics::Initialize(window);
 
 
 

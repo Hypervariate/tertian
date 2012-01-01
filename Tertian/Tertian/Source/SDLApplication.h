@@ -23,7 +23,7 @@ public:
 
     SDLApplication operator=(const SDLApplication& rhs) {};
 
-    void Initialize();
+    void Initialize(SDL_Window* window);
     void Update();
     void Shutdown();
 
