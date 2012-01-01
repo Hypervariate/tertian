@@ -23,5 +23,8 @@ float Timer::GetDt()
     m_currTs = 0;
     m_currTs = SDL_GetPerformanceCounter();
 
-    return (m_currTs - m_prevTs)*m_scpc;
+	float fDt = (m_currTs - m_prevTs)*m_scpc;
+	m_prevTs = m_currTs;
+
+    return fDt;
 }
