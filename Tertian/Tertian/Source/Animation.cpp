@@ -66,11 +66,12 @@ unsigned int Animation::GetFrameCount()
 }
 char* Animation::UpdateAnimation(float delta_time)
 {
+	m_lastFrameTimeStamp += delta_time;
 	
 	//implement bouncing
-	if(IsAnimationPlaying() && delta_time - m_lastFrameTimeStamp >= m_frameRate){
+	if(IsAnimationPlaying() && m_lastFrameTimeStamp >= m_frameRate){
 		m_frameIndex = (m_frameIndex + m_direction) % GetFrameCount();
-		m_lastFrameTimeStamp = delta_time;
+		m_lastFrameTimeStamp = 0;
 	}
 	
 	if(m_behavior == PLAY_ONCE && m_frameIndex >= GetFrameCount() -1)

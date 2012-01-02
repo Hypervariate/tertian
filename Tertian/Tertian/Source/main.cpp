@@ -6,6 +6,7 @@
 #include "Utilities/SDLUtils.h"
 #include "SDLApplication.h"
 #include "Utilities/GlobalDefines.h"
+#include "Timer.h"
 
 #include "SDL_gfxPrimitives.h"
 #include "Animation.h"
@@ -21,6 +22,7 @@ int main(int argc, char *argv[])
     g_SDLwindow = SDL_CreateWindow("Tertian", 100, 100, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
 	sdlApp.Initialize(g_SDLwindow);
+
 	
 	Animation animation;
 	animation.LoadAnimation("librarian_idle");
@@ -28,8 +30,8 @@ int main(int argc, char *argv[])
 	float delta_time;
 
     while(sdlApp.IsRunning()) {
-		delta_time = timer.GetDt();
-		Graphics::SetDrawColor(255, 127, 0);
+		delta_time = timer.GetDt();   
+	
 		
 		if(Keyboard::GetKey("Up"))
 			Graphics::RenderTextures(true);
@@ -63,7 +65,11 @@ int main(int argc, char *argv[])
 
 		
 
-		sdlApp.Update();
+		sdlApp.Update(timer.GetDt());
+
+#if _DEBUG
+	//printf("time :%f\n", timer.GetDt());
+#endif	
 		
 		
     }

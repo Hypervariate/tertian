@@ -24,7 +24,7 @@ public:
     SDLApplication operator=(const SDLApplication& rhs) {};
 
     void Initialize(SDL_Window* window);
-    void Update();
+    void Update(float fDt);
     void Shutdown();
 
     bool IsRunning() { return m_bRunning; }

@@ -27,7 +27,7 @@ void SDLApplication::Initialize(SDL_Window* window)
 }
 
 
-void SDLApplication::Update()
+void SDLApplication::Update(float fDt)
 {
     SDL_PollEvent(&event);
 
