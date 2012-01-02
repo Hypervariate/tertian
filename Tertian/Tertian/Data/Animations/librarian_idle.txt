@@ -7,3 +7,9 @@ FRAME librarian_idle_4
 FRAME librarian_idle_5
 FRAME librarian_idle_6
 FRAME librarian_idle_7
+
+//FRAMERATE <float value (seconds)>
+FRAMERATE 0.8
+
+//BEHAVIOR <PLAY_ONCE> or <BOUNCE> or <REPEAT>
+BEHAVIOR BOUNCE

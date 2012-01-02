@@ -45,8 +45,6 @@ bool Graphics::Initialize(SDL_Window* window)
 //------------------------------------------------------
 void Graphics::Update()
 {
-	
-	SDL_BlitSurface(m_fontBuffer,NULL, m_buffer, NULL);
 	if(renderTextures)
 	{
 		SDL_DestroyTexture(m_bufferTexture);

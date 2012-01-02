@@ -24,32 +24,42 @@ int main(int argc, char *argv[])
 	
 	Animation animation;
 	animation.LoadAnimation("librarian_idle");
-	int frame_index = 0;
-	char* frame_name;
+	Timer timer;
+	float delta_time;
 
     while(sdlApp.IsRunning()) {
+		delta_time = timer.GetDt();
 		Graphics::SetDrawColor(255, 127, 0);
 		
 		if(Keyboard::GetKey("Up"))
 			Graphics::RenderTextures(true);
 		if(Keyboard::GetKey("Down"))
 			Graphics::RenderTextures(false);
+		if(Keyboard::GetKey("s"))
+			animation.StopAnimation();
+		if(Keyboard::GetKey("a"))
+			animation.PauseAnimation();
+		if(Keyboard::GetKey("p"))
+			animation.PlayAnimation();
 
-		frame_index = ++frame_index % animation.GetFrameCount();
-		frame_name = animation.GetFrameName(frame_index);
-		Graphics::BlitImage(frame_name);
+
 		
-		Graphics::Print("press [Down] [Up] to toggle textures.", 0, 0);
+		Graphics::BlitImage(animation.UpdateAnimation(delta_time));
+		
+		Graphics::Print("[Down] [Up] to toggle textures.", 0, 0);
+		Graphics::Print("[S]top  animation.", 0, 12);
+		Graphics::Print("P[a]use animation.", 0, 24);
+		Graphics::Print("[P]lay  animation.", 0, 36);
 		
 
-		Graphics::DrawLevelBlock(WINDOW_WIDTH/2,	  WINDOW_HEIGHT/2);
+		Graphics::DrawLevelBlock(WINDOW_WIDTH/2,	   WINDOW_HEIGHT/2);
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 + 128, WINDOW_HEIGHT/2);
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 - 128, WINDOW_HEIGHT/2);
 
-		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 - 64,  WINDOW_HEIGHT/2 - 32);
+		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 - 64, WINDOW_HEIGHT/2 - 32);
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 + 64, WINDOW_HEIGHT/2 - 32);
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 + 64, WINDOW_HEIGHT/2 - 53);
-		Graphics::DrawLevelBlock(WINDOW_WIDTH/2, WINDOW_HEIGHT/2 - 64);
+		Graphics::DrawLevelBlock(WINDOW_WIDTH/2,	  WINDOW_HEIGHT/2 - 64);
 
 		
 

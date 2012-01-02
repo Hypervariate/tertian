@@ -45,6 +45,9 @@ void SDLApplication::Update()
 
 	Mouse::AnalyzeEvents(&event);
 
+	float delta_time = m_timer.GetDt();
+	
+
 	Graphics::Update();
     
 
