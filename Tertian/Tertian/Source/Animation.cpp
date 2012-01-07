@@ -1,4 +1,5 @@
 #include "Animation.h"
+FileReader Animation::m_fileReader;
 
 Animation::Animation()
 {
@@ -11,11 +12,15 @@ Animation::Animation()
 }
 Animation::~Animation()
 {
+	ClearAnimation();
+}
+void Animation::ClearAnimation()
+{
 	for(int i = m_frames.size()-1; i > -1; i--)
 		delete[] m_frames.at(i);
 	m_frames.clear();
 }
-int Animation::LoadAnimation(char* animation_name)
+bool Animation::LoadAnimation(char* animation_name, Animation* animation)
 {
 	char path[MAX_PATH_LENGTH];
 
@@ -30,31 +35,31 @@ int Animation::LoadAnimation(char* animation_name)
 	if(success)
 		success = m_fileReader.TokenizeFile();
 	if(!success)
-		return -1;
+		return false;
 	else{
 		//assign the fields to the animation
 		for(unsigned int i = 0; i < m_fileReader.GetTotalTokens(); i++){
 			if(m_fileReader.GetToken(i) == "FRAME"){
 				char* frame_name = new char[MAX_PATH_LENGTH];
 				strcpy(frame_name, m_fileReader.GetToken(i+1).c_str());
-				m_frames.push_back(frame_name);
+				animation->m_frames.push_back(frame_name);
 				
 			}
 			if(m_fileReader.GetToken(i) == "FRAMERATE"){
-				m_frameRate = atof(m_fileReader.GetToken(i+1).c_str());
+				animation->m_frameRate = atof(m_fileReader.GetToken(i+1).c_str());
 			}
 			if(m_fileReader.GetToken(i) == "BEHAVIOR"){
 				if(m_fileReader.GetToken(i+1) == "PLAY_ONCE")
-					m_behavior = PLAY_ONCE;
+					animation->m_behavior = PLAY_ONCE;
 				else if(m_fileReader.GetToken(i+1) == "BOUNCE")
-					m_behavior = BOUNCE;
+					animation->m_behavior = BOUNCE;
 				else
-					m_behavior = REPEAT;
+					animation->m_behavior = REPEAT;
 			}
 		}
 	}
 
-	return 0;
+	return true;
 }
 char* Animation::GetFrameName(unsigned int index)
 {

@@ -18,7 +18,7 @@ public:
 	Animation();
 	~Animation();
 
-	int LoadAnimation(char* animation_name);	//loads animation from a file name. Do not pass directory/extension	
+	static bool LoadAnimation(char* animation_name, Animation* animation);	//loads animation from a file name. Do not pass directory/extension	
 	unsigned int GetFrameCount();				//returns the total frame count for the animation sequence
 
 	
@@ -32,11 +32,11 @@ public:
 	bool IsAnimationPlaying(); //returns true if animation is animating, false if paused or stopped
 
 	void SetAnimationBehavior(ANIMATION_BEHAVIOR behavior);
-
+	void ClearAnimation();	//delete all frames on the heap
 
 private:
 	
-	FileReader m_fileReader;
+	static FileReader m_fileReader;
 
 	vector<char*> m_frames;
 	
