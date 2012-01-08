@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Animation.cpp" />
+    <ClCompile Include="Source\AnimationCollection.cpp" />
     <ClCompile Include="Source\FileReader.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\Keyboard.cpp" />
@@ -99,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\AnimationCollection.h" />
     <ClInclude Include="Source\FileReader.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Keyboard.h" />

@@ -33,9 +33,11 @@ public:
 
 	void SetAnimationBehavior(ANIMATION_BEHAVIOR behavior);
 	void ClearAnimation();	//delete all frames on the heap
+	char* GetAnimationName();
 
 private:
-	
+
+	char m_animationName[MAX_PATH_LENGTH];
 	static FileReader m_fileReader;
 
 	vector<char*> m_frames;

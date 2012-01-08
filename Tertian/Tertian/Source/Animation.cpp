@@ -59,6 +59,10 @@ bool Animation::LoadAnimation(char* animation_name, Animation* animation)
 		}
 	}
 
+	for(int i = 0; i < MAX_PATH_LENGTH; i++)
+		animation->m_animationName[i] = '\0';
+	strcat(animation->m_animationName, animation_name);
+
 	return true;
 }
 char* Animation::GetFrameName(unsigned int index)
@@ -107,4 +111,8 @@ void Animation::PlayAnimation()
 bool Animation::IsAnimationPlaying()
 {
 	return m_animationIsPlaying;
+}
+char* Animation::GetAnimationName()
+{
+	return m_animationName;
 }

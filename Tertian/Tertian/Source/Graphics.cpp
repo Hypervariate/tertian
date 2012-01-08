@@ -173,16 +173,19 @@ void Graphics::DrawLevelBlock(int x, int y){
 	DrawLine(x + width, y + height,	x,				y + size + height); //310
 	DrawLine(x + width, y + height,	x + width,		y); //90	
 }
-void Graphics::BlitImage(char* index, int x, int y){
+void Graphics::BlitImage(string index, int x, int y){
+	char* name = (char*)index.c_str();
 	bool success = true;
-	if(m_images[index] == NULL)
-		success = LoadImage(index);
+	if(m_images[name] == NULL)
+		success = LoadImage(name);
 	if(!success){
-		cout << "Could not load image " << index << endl;
+		cout << "Could not load image " << name << endl;
 		return;
 	}
+	
+	cout << name << endl;
 
-	SDL_Surface* image = m_images[index];
+	SDL_Surface* image = m_images[name];
 	SDL_Rect rcDest = { x - image->w/2, y - image->h/2, 0, 0 };
 	SDL_BlitSurface ( image, NULL, m_buffer, &rcDest );
 	

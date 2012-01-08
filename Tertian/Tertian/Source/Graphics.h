@@ -13,6 +13,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <string>
 
 using namespace std;
 
@@ -55,7 +56,7 @@ public:
 	static void Print(int i, int x = 0, int y = 0, int font = 0);
 
     static void SetDrawColor(Uint8 red = 127, Uint8 green = 127, Uint8 blue = 127, Uint8 alpha = 255);
-	static void BlitImage(char* index, int x = WINDOW_WIDTH/2, int y = WINDOW_HEIGHT/2);
+	static void BlitImage(string index, int x = WINDOW_WIDTH/2, int y = WINDOW_HEIGHT/2);
 
 	static void RenderTextures(bool true_or_false);
 	static bool IsRenderingTextures();
