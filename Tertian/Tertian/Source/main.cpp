@@ -24,8 +24,8 @@ int main(int argc, char *argv[])
 	sdlApp.Initialize(g_SDLwindow);
 
 	AnimationCollection ac = AnimationCollection();
-	//ac.InsertAnimation("librarian_idle");
-	ac.InsertAnimation("librarian_attack");
+	ac.InsertAnimation("librarian_idle");
+	//ac.InsertAnimation("librarian_attack");
 
 	
 	Timer timer;
@@ -55,11 +55,8 @@ int main(int argc, char *argv[])
 		
 		frame_name = ac.UpdateActiveAnimation(delta_time);
 	
-		Graphics::BlitImage("librarian_idle_0", 50, 50);
-		Graphics::BlitImage("librarian_idle_1", 100, 100);
-		Graphics::BlitImage("librarian_idle_2", 100, 140);
-
-		Graphics::BlitImage(frame_name, x, y);
+//		Graphics::BlitImage("librarian_idle_0", 50, 50);
+        Graphics::BlitImage((char*)frame_name.c_str(), x, y);
 		
 		Graphics::Print("[Down] [Up] to toggle textures.", 0, 0);
 		Graphics::Print("[S]top  animation.", 0, 12);

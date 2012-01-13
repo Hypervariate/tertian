@@ -3,6 +3,7 @@
 
 #include "Animation.h"
 #include <map>
+
 #include <string>
 using namespace std;
 
@@ -22,7 +23,7 @@ public:
 
 private:
 	Animation* GetActiveAnimation();
-	map<string, Animation*> m_animationMap;
+	map<string, Animation> m_animationMap;
 	string m_activeAnimationName;
 };
 
