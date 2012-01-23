@@ -33,7 +33,7 @@ private:
 	static SDL_Rect m_tempRect;
     static bool renderTextures;
 
-	static map<char*, SDL_Surface*> m_images;
+	static map<string, SDL_Surface*> m_images;
 
 public:
     Graphics();

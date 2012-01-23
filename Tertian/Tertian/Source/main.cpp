@@ -23,9 +23,9 @@ int main(int argc, char *argv[])
 
 	sdlApp.Initialize(g_SDLwindow);
 
-	AnimationCollection ac = AnimationCollection();
-	ac.InsertAnimation("librarian_idle");
-	//ac.InsertAnimation("librarian_attack");
+	Animation animation = Animation();
+	Animation::LoadAnimation("librarian_idle", &animation);
+	
 
 	
 	Timer timer;
@@ -35,28 +35,25 @@ int main(int argc, char *argv[])
 	int y = WINDOW_HEIGHT/2;
     while(sdlApp.IsRunning()) {
 		delta_time = timer.GetDt();   
-	
+		string frame_name = animation.UpdateAnimation(delta_time);
 		
 		if(Keyboard::GetKey("Up"))
-			y -= 2;
+			frame_name = "librarian_idle_0";
 		if(Keyboard::GetKey("Down"))
-			y += 2;
+			frame_name = "librarian_idle_1";
 		if(Keyboard::GetKey("Left"))
-			x -= 2;
+			frame_name = "librarian_idle_2";
 		if(Keyboard::GetKey("right"))
-			x += 2;
+			frame_name = "librarian_idle_3";
 		if(Keyboard::GetKey("s"))
-			ac.StopActiveAnimation();
+			animation.StopAnimation();
 		if(Keyboard::GetKey("a"))
-			ac.PauseActiveAnimation();
+			animation.PauseAnimation();
 		if(Keyboard::GetKey("p"))
-			ac.PlayActiveAnimation();
-
+			animation.PlayAnimation();
 		
-		frame_name = ac.UpdateActiveAnimation(delta_time);
-	
-//		Graphics::BlitImage("librarian_idle_0", 50, 50);
-        Graphics::BlitImage((char*)frame_name.c_str(), x, y);
+
+        Graphics::BlitImage(frame_name, x, y);
 		
 		Graphics::Print("[Down] [Up] to toggle textures.", 0, 0);
 		Graphics::Print("[S]top  animation.", 0, 12);

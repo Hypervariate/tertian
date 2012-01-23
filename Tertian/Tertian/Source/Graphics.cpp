@@ -3,7 +3,7 @@
 SDL_Surface *Graphics::m_buffer;		
 SDL_Surface *Graphics::m_fontBuffer;    
 vector<TTF_Font*> Graphics::m_fonts;	
-map<char*, SDL_Surface*> Graphics::m_images;
+map<string, SDL_Surface*> Graphics::m_images;
 SDL_Color Graphics::m_drawColor;	
 SDL_Renderer *Graphics::m_renderer = NULL;
 SDL_Texture *Graphics::m_bufferTexture;
@@ -45,14 +45,16 @@ bool Graphics::Initialize(SDL_Window* window)
 //------------------------------------------------------
 void Graphics::Update()
 {
+
 	if(renderTextures)
 	{
 		SDL_DestroyTexture(m_bufferTexture);
 		m_bufferTexture = SDL_CreateTextureFromSurface(m_renderer, m_buffer);
 		SDL_RenderCopy(m_renderer, m_bufferTexture, NULL, NULL);
+		SDL_RenderPresent(m_renderer);
 	}
 	
-	SDL_RenderPresent(m_renderer);
+	
 	ClearBackBuffer();
 
 }
@@ -75,7 +77,7 @@ bool Graphics::Deinitialize(){
         font=NULL;
     }
 	SDL_Surface* surface;
-	map<char*,SDL_Surface*>::iterator it;
+	map<string,SDL_Surface*>::iterator it;
     for ( it=m_images.begin() ; it != m_images.end(); it++ )
     {
 		surface = it->second;
