@@ -67,6 +67,9 @@ bool Animation::LoadAnimation(char* animation_name, Animation* animation)
 }
 string Animation::GetFrameName(unsigned int index)
 {
+	if(GetFrameCount() <= index)
+		return "";
+
 	return m_frames.at(index);
 }
 unsigned int Animation::GetFrameCount()

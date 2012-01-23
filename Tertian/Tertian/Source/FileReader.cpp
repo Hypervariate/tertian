@@ -41,6 +41,7 @@ bool FileReader::TokenizeFile(){
 		token = ReadToken();
 		m_tokens.push_back(token);
 	}
+	CloseFile();
 	return true;
 }
 string FileReader::GetToken(unsigned int i){

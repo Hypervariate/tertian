@@ -11,7 +11,14 @@ AnimationCollection::~AnimationCollection()
 
 bool AnimationCollection::InsertAnimation(string animation_name)
 {
-	bool success = false;
+	
+	Animation animation = Animation();
+	bool success = Animation::LoadAnimation((char*)animation_name.c_str(), &animation);
+	if(success){
+		m_animationMap.insert(pair<string,Animation>(animation_name,animation));
+		SetActiveAnimation(animation_name);
+	}
+
 
     return success;
 }
@@ -39,7 +46,13 @@ void AnimationCollection::SetActiveAnimation(string active_animation_name)
 }
 string AnimationCollection::UpdateActiveAnimation(float delta_time)
 {
-	return "librarian_idle_0";
+	map<string,Animation>::iterator it;
+	it = m_animationMap.find(m_activeAnimationName);
+	string frame_name;
+	if(it != m_animationMap.end()){
+		frame_name = it->second.UpdateAnimation(delta_time);
+	}
+	return frame_name;
 }
 Animation* AnimationCollection::GetActiveAnimation()
 {
