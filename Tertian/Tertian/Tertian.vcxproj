@@ -39,13 +39,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>ThirdParty\SDL\include;$(IncludePath);D:\Code\Tertian\Tertian\ThirdParty\SDL\SDL_gfx\include</IncludePath>
-    <LibraryPath>ThirdParty\SDL\Lib_Debug;$(LibraryPath);D:\Code\Tertian\Tertian\ThirdParty\SDL\SDL_gfx\lib</LibraryPath>
+    <IncludePath>ThirdParty\SDL\include;$(IncludePath);$(IncludePath)ThirdParty\SDL\SDL_gfx\include;ThirdParty\tinyxml\include</IncludePath>
+    <LibraryPath>ThirdParty\tinyxml\lib;ThirdParty\SDL\Lib_Debug;$(LibraryPath);D:\Code\Tertian\Tertian\ThirdParty\SDL\SDL_gfx\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\Code\Tertian\Tertian\ThirdParty\SDL\include;$(IncludePath);D:\Code\Tertian\Tertian\ThirdParty\SDL\SDL_gfx\include</IncludePath>
-    <LibraryPath>D:\Code\Tertian\Tertian\ThirdParty\SDL\Lib_Release;$(LibraryPath);D:\Code\Tertian\Tertian\ThirdParty\SDL\SDL_gfx\lib</LibraryPath>
+    <IncludePath>D:\Code\Tertian\Tertian\ThirdParty\SDL\include;$(IncludePath);D:\Code\Tertian\Tertian\ThirdParty\SDL\SDL_gfx\include;ThirdParty\tinyxml\include</IncludePath>
+    <LibraryPath>ThirdParty\tinyxml\lib;D:\Code\Tertian\Tertian\ThirdParty\SDL\Lib_Release;$(LibraryPath);D:\Code\Tertian\Tertian\ThirdParty\SDL\SDL_gfx\lib</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -59,7 +59,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);SDLmain.lib;SDL.lib;SDL_ttf.lib;sdlgfx.lib;SDL_image.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);SDLmain.lib;SDL.lib;SDL_ttf.lib;sdlgfx.lib;SDL_image.lib;tinyxml.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,6 +97,7 @@
     <ClCompile Include="Source\Mouse.cpp" />
     <ClCompile Include="Source\SDLApplication.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
+    <ClCompile Include="Source\XMLFileReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation.h" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Source\Utilities\GlobalDefines.h" />
     <ClInclude Include="Source\Utilities\MathUtils.h" />
     <ClInclude Include="Source\Utilities\SDLUtils.h" />
+    <ClInclude Include="Source\XMLFileReader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

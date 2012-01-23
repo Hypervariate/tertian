@@ -185,7 +185,7 @@ void Graphics::BlitImage(string index, int x, int y){
 		return;
 	}
 	
-	cout << name << endl;
+	//cout << name << endl;
 
 	SDL_Surface* image = m_images[name];
 	SDL_Rect rcDest = { x - image->w/2, y - image->h/2, 0, 0 };

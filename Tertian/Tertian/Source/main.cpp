@@ -11,6 +11,8 @@
 #include "SDL_gfxPrimitives.h"
 #include "AnimationCollection.h"
 
+#include "XMLFileReader.h"
+
 
 SDLApplication sdlApp;
 
@@ -23,6 +25,16 @@ int main(int argc, char *argv[])
 
 	sdlApp.Initialize(g_SDLwindow);
 
+
+	XMLFileReader file_reader = XMLFileReader();
+	file_reader.OpenFile("Data/Animations/test.xml");
+	file_reader.GetToken("frame");
+	file_reader.GetToken("framerate");
+	file_reader.GetToken("behavior");
+	
+
+
+	//set up the animation collection
 	AnimationCollection ac = AnimationCollection();
 	ac.InsertAnimation("librarian_attack");
 	ac.InsertAnimation("librarian_idle");

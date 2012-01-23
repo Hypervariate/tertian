@@ -54,6 +54,9 @@
     <ClCompile Include="Source\AnimationCollection.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\XMLFileReader.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics.h">
@@ -87,6 +90,9 @@
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\AnimationCollection.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\XMLFileReader.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
