@@ -38,13 +38,13 @@ int main(int argc, char *argv[])
 		string frame_name = animation.UpdateAnimation(delta_time);
 		
 		if(Keyboard::GetKey("Up"))
-			frame_name = "librarian_idle_0";
+			y--;
 		if(Keyboard::GetKey("Down"))
-			frame_name = "librarian_idle_1";
+			y++;
 		if(Keyboard::GetKey("Left"))
-			frame_name = "librarian_idle_2";
+			x--;
 		if(Keyboard::GetKey("right"))
-			frame_name = "librarian_idle_3";
+			x++;
 		if(Keyboard::GetKey("s"))
 			animation.StopAnimation();
 		if(Keyboard::GetKey("a"))

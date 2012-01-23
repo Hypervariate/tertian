@@ -16,9 +16,7 @@ Animation::~Animation()
 }
 void Animation::ClearAnimation()
 {
-	for(int i = m_frames.size()-1; i > -1; i--)
-		delete[] m_frames.at(i);
-	m_frames.clear();
+	
 }
 bool Animation::LoadAnimation(char* animation_name, Animation* animation)
 {
@@ -42,7 +40,9 @@ bool Animation::LoadAnimation(char* animation_name, Animation* animation)
 			if(m_fileReader.GetToken(i) == "FRAME"){
 				char* frame_name = new char[MAX_PATH_LENGTH];
 				strcpy(frame_name, m_fileReader.GetToken(i+1).c_str());
-				animation->m_frames.push_back(frame_name);
+				string frame_name_string = frame_name;
+				animation->m_frames.push_back(frame_name_string);
+				delete[] frame_name;
 				
 			}
 			if(m_fileReader.GetToken(i) == "FRAMERATE"){
@@ -65,7 +65,7 @@ bool Animation::LoadAnimation(char* animation_name, Animation* animation)
 
 	return true;
 }
-char* Animation::GetFrameName(unsigned int index)
+string Animation::GetFrameName(unsigned int index)
 {
 	return m_frames.at(index);
 }
@@ -73,7 +73,7 @@ unsigned int Animation::GetFrameCount()
 {
 	return m_frames.size();
 }
-char* Animation::UpdateAnimation(float delta_time)
+string Animation::UpdateAnimation(float delta_time)
 {
 	m_lastFrameTimeStamp += delta_time;
 	

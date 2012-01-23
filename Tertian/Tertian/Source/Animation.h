@@ -22,8 +22,8 @@ public:
 	unsigned int GetFrameCount();				//returns the total frame count for the animation sequence
 
 	
-	char* UpdateAnimation(float delta_time);	//updates the current frame if necessary. Always returns current frame name.
-	char* GetFrameName(unsigned int index);		//returns the name of the current frame image accepted by Graphics::BlitImage(name)
+	string UpdateAnimation(float delta_time);	//updates the current frame if necessary. Always returns current frame name.
+	string GetFrameName(unsigned int index);		//returns the name of the current frame image accepted by Graphics::BlitImage(name)
 
 	void PauseAnimation();	//halt the animation at the current frame
 	void StopAnimation();	//stop the animation and set the current frame to 0
@@ -40,7 +40,7 @@ private:
 	char m_animationName[MAX_PATH_LENGTH];
 	static FileReader m_fileReader;
 
-	vector<char*> m_frames;
+	vector<string> m_frames;
 	
 	int m_frameIndex;
 	float frameDeltaTime;
