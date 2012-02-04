@@ -1,29 +1,30 @@
 #ifndef LEVELGRID_H_
 #define LEVELGRID_H_
 
+#include "CubeGrid.h"
+#include "Graphics.h"
+#include <map>
+#include <string>
+
 class LevelGrid{
 
 public:
 	LevelGrid();
-    LevelGrid(unsigned int x, unsigned int y, unsigned int z);
-    ~LevelGrid();
-	void AllocateLevelGrid(unsigned int x, unsigned int y, unsigned int z);
-	void DeallocateLevelGrid();
+	~LevelGrid();
 
-public:
-    unsigned int GetCell(unsigned int x, unsigned int y, unsigned int z);
-    void SetCell(unsigned int x, unsigned int y, unsigned int z, unsigned int value);
-	bool LevelGrid::IndexIsValid(unsigned int x, unsigned int y, unsigned int z);
+	bool LoadLevelGrid();
+	bool UnloadLevelGrid();
 
-	unsigned int GetSizeX();
-	unsigned int GetSizeY();
-	unsigned int GetSizeZ();
+	void RenderLevelGrid();
 
 private:
-    unsigned int ****m_cells;
-	unsigned int m_sizeX;
-	unsigned int m_sizeY;
-	unsigned int m_sizeZ;
+	CubeGrid m_cubeGrid;
+	unsigned int m_blockSize;
+
+	//static xml file reader member to optionally read from files
+
+	map<int, string> m_tileMap;	//map of tiles corresponding to the image names of the tiles
+
 };
 
 #endif

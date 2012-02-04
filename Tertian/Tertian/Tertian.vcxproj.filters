@@ -60,6 +60,9 @@
     <ClCompile Include="Source\CubeGrid.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\LevelGrid.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics.h">
@@ -99,6 +102,9 @@
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\CubeGrid.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LevelGrid.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
