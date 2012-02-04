@@ -10,7 +10,7 @@
 
 #include "SDL_gfxPrimitives.h"
 #include "AnimationCollection.h"
-
+#include "LevelGrid.h"
 #include "XMLFileReader.h"
 
 
@@ -39,6 +39,41 @@ int main(int argc, char *argv[])
 	ac.InsertAnimation("librarian_attack");
 	ac.InsertAnimation("librarian_idle");
 		
+	LevelGrid level = LevelGrid(5,4,3);
+	 //  Access array elements
+
+    for(int i = 0; i < level.GetSizeX(); i++)
+
+    {
+
+        cout << i << endl;
+
+ 
+
+        for(int j = 0; j < level.GetSizeY(); j++)
+
+        {
+
+            cout << endl;
+
+ 
+
+            for(int k = 0; k < level.GetSizeZ(); k++)
+
+            {
+
+
+                cout << '\t' << level.GetCell(i,j,k);
+
+            }
+
+        }
+
+ 
+
+        cout << endl << endl;
+
+    }
 
 	
 	Timer timer;
