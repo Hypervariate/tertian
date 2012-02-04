@@ -43,38 +43,20 @@ int main(int argc, char *argv[])
 	 //  Access array elements
 
     for(int i = 0; i < level.GetSizeX(); i++)
-
-    {
-
-        cout << i << endl;
-
- 
-
+	{
+		cout << i << endl;
         for(int j = 0; j < level.GetSizeY(); j++)
-
-        {
-
-            cout << endl;
-
- 
-
+		{
+			cout << endl;
             for(int k = 0; k < level.GetSizeZ(); k++)
-
-            {
-
-
-                cout << '\t' << level.GetCell(i,j,k);
-
+            {	
+				cout << '\t' << level.GetCell(i,j,k);
             }
-
         }
-
- 
-
         cout << endl << endl;
+	}
 
-    }
-
+	int block_size = 4;
 	
 	Timer timer;
 	float delta_time;
@@ -130,7 +112,9 @@ int main(int argc, char *argv[])
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 + 64, WINDOW_HEIGHT/2 - 53);
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2,	  WINDOW_HEIGHT/2 - 64);
 
-		
+		for(int i = 0; i < level.GetSizeX(); i++)
+			for(int j = 0; j < level.GetSizeY(); j++)
+				Graphics::DrawRect(block_size * i + block_size, block_size * j + block_size, block_size, block_size);
 
 		sdlApp.Update(timer.GetDt());
 

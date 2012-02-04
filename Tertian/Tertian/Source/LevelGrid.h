@@ -21,7 +21,7 @@ public:
 	unsigned int GetSizeZ();
 
 private:
-    unsigned int ***array3D;
+    unsigned int ****m_cells;
 	unsigned int m_sizeX;
 	unsigned int m_sizeY;
 	unsigned int m_sizeZ;

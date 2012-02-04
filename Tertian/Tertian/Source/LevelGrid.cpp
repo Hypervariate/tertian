@@ -7,48 +7,53 @@ LevelGrid::LevelGrid(unsigned int x, unsigned int y, unsigned int z)
 	m_sizeZ = z;
 
     //  Allocate 3D Array
-	array3D = new unsigned int**[x];
-
-	for(unsigned int i = 0; i < x; i++)
+	m_cells = new unsigned int***[1];
+	for(unsigned int i = 0; i < 1; i++)
 	{
-		array3D[i] = new unsigned int*[y];
-		for(unsigned int j = 0; j < y; j++)
+		m_cells[i] = new unsigned int**[x];
+		for(unsigned int j = 0; j < x; j++)
         {
-			array3D[i][j] = new unsigned int[z];
+			m_cells[i][j] = new unsigned int*[y];
+			for(unsigned int k = 0; k < y; k++)
+			{
+				m_cells[i][j][k] = new unsigned int[z];
+			}
 		}
     }
 
 	for(unsigned int i = 0; i < x; i++)
 		for(unsigned int j = 0; j < y; j++)
 			for(unsigned int k = 0; k < z; k++)
-				array3D[i][j][k] = (i * y * z) + (j * z) + k;
+				SetCell(i,j,k,1);
 
 }
 LevelGrid::~LevelGrid()
 {
-	//  Deallocate 3D array
-	for(unsigned int i = 0; i < m_sizeX; i++)
+	for(unsigned int i = 0; i < 1; i++)
 	{
-		for(unsigned int j = 0; j < m_sizeY; j++)
-        {
-			delete[] array3D[i][j];
-        }
-		delete[] array3D[i];
+		for(unsigned int j = 0; j < m_sizeX; j++)
+		{
+			for(unsigned int k = 0; k < m_sizeY; k++)
+			{
+				delete[] m_cells[i][j][k];
+			}
+			delete[] m_cells[i][j];
+		}
+		delete[] m_cells[i];
 	}
-	delete[] array3D;
-
+	delete[] m_cells;
 }
 unsigned int LevelGrid::GetCell(unsigned int x, unsigned int y, unsigned int z)
 {
 	if(IndexIsValid(x,y,z))
-		return array3D[x][y][z];
+		return m_cells[0][x][y][z];
 	else
 		return 0;
 }
 void LevelGrid::SetCell(unsigned int x, unsigned int y, unsigned int z, unsigned int value)
 {
     if(IndexIsValid(x,y,z))
-		array3D[x][y][z] = value;
+		m_cells[0][x][y][z] = value;
 }
 bool LevelGrid::IndexIsValid(unsigned int x, unsigned int y, unsigned int z)
 {
