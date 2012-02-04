@@ -10,7 +10,7 @@
 
 #include "SDL_gfxPrimitives.h"
 #include "AnimationCollection.h"
-#include "LevelGrid.h"
+#include "CubeGrid.h"
 #include "XMLFileReader.h"
 
 
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	ac.InsertAnimation("librarian_attack");
 	ac.InsertAnimation("librarian_idle");
 		
-	LevelGrid level = LevelGrid(5,4,3);
+	CubeGrid level = CubeGrid(5,4,3);
 	 //  Access array elements
 
    
