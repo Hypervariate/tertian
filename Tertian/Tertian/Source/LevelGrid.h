@@ -1,20 +1,19 @@
 #ifndef LEVELGRID_H_
 #define LEVELGRID_H_
 
-
-#define MAX_LEVEL_SIZE 256
-
 class LevelGrid{
 
 public:
+	LevelGrid();
     LevelGrid(unsigned int x, unsigned int y, unsigned int z);
     ~LevelGrid();
+	void AllocateLevelGrid(unsigned int x, unsigned int y, unsigned int z);
+	void DeallocateLevelGrid();
 
 public:
     unsigned int GetCell(unsigned int x, unsigned int y, unsigned int z);
     void SetCell(unsigned int x, unsigned int y, unsigned int z, unsigned int value);
 	bool LevelGrid::IndexIsValid(unsigned int x, unsigned int y, unsigned int z);
-
 
 	unsigned int GetSizeX();
 	unsigned int GetSizeY();

@@ -1,12 +1,19 @@
 #include "LevelGrid.h"
 
+LevelGrid::LevelGrid()
+{
+	LevelGrid(0,0,0);
+}
 LevelGrid::LevelGrid(unsigned int x, unsigned int y, unsigned int z)
+{
+	AllocateLevelGrid(x,y,z);
+}
+void LevelGrid::AllocateLevelGrid(unsigned int x, unsigned int y, unsigned int z)
 {
 	m_sizeX = x;
 	m_sizeY = y;
 	m_sizeZ = z;
 
-    //  Allocate 3D Array
 	m_cells = new unsigned int***[1];
 	for(unsigned int i = 0; i < 1; i++)
 	{
@@ -24,10 +31,13 @@ LevelGrid::LevelGrid(unsigned int x, unsigned int y, unsigned int z)
 	for(unsigned int i = 0; i < x; i++)
 		for(unsigned int j = 0; j < y; j++)
 			for(unsigned int k = 0; k < z; k++)
-				SetCell(i,j,k,1);
-
+				SetCell(i,j,k,i+j+k);
 }
 LevelGrid::~LevelGrid()
+{
+	DeallocateLevelGrid();
+}
+void LevelGrid::DeallocateLevelGrid()
 {
 	for(unsigned int i = 0; i < 1; i++)
 	{

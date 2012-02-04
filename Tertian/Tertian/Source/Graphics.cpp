@@ -50,11 +50,16 @@ void Graphics::Update()
 	{
 		
 		m_bufferTexture = SDL_CreateTextureFromSurface(m_renderer, m_buffer);
+		
 		SDL_RenderCopy(m_renderer, m_bufferTexture, NULL, NULL);
+		
 		SDL_RenderPresent(m_renderer);
-
+		
         SDL_DestroyTexture(m_bufferTexture);
+		
 	}
+	else
+		SDL_RenderPresent(m_renderer);
 	
 	
 	ClearBackBuffer();

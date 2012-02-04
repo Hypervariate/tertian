@@ -42,26 +42,13 @@ int main(int argc, char *argv[])
 	LevelGrid level = LevelGrid(5,4,3);
 	 //  Access array elements
 
-    for(int i = 0; i < level.GetSizeX(); i++)
-	{
-		cout << i << endl;
-        for(int j = 0; j < level.GetSizeY(); j++)
-		{
-			cout << endl;
-            for(int k = 0; k < level.GetSizeZ(); k++)
-            {	
-				cout << '\t' << level.GetCell(i,j,k);
-            }
-        }
-        cout << endl << endl;
-	}
-
-	int block_size = 4;
+   
+	int block_size = 32;
 	
 	Timer timer;
 	float delta_time;
 	string frame_name;
-	int x = WINDOW_WIDTH/2;
+	int x = WINDOW_WIDTH/2 + 100;
 	int y = WINDOW_HEIGHT/2;
 	
     while(sdlApp.IsRunning()) {
@@ -84,6 +71,8 @@ int main(int argc, char *argv[])
 		if(Keyboard::GetKey("p"))
 			ac.PlayActiveAnimation();
 		
+		
+		
 		//select the active animation 
 		if(Keyboard::GetKey("1"))
 			ac.SetActiveAnimation("librarian_idle");
@@ -96,6 +85,7 @@ int main(int argc, char *argv[])
 		//blit the animation frame
         Graphics::BlitImage(frame_name, x, y);
 		
+
 	
 		Graphics::Print("[S]top  animation.", 0, 12);
 		Graphics::Print("P[a]use animation.", 0, 24);
@@ -112,9 +102,15 @@ int main(int argc, char *argv[])
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2 + 64, WINDOW_HEIGHT/2 - 53);
 		Graphics::DrawLevelBlock(WINDOW_WIDTH/2,	  WINDOW_HEIGHT/2 - 64);
 
+		Graphics::SetDrawColor();
 		for(int i = 0; i < level.GetSizeX(); i++)
 			for(int j = 0; j < level.GetSizeY(); j++)
-				Graphics::DrawRect(block_size * i + block_size, block_size * j + block_size, block_size, block_size);
+				for(int k = 0; k < level.GetSizeZ(); k++){
+					Graphics::DrawRect(block_size * i + block_size, block_size * j + block_size, block_size, block_size);
+					int value = level.GetCell(i,j,k);
+					Graphics::Print(value, block_size * i + block_size + k*8, block_size * j + block_size + k*8);
+				}
+			
 
 		sdlApp.Update(timer.GetDt());
 
