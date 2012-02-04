@@ -46,12 +46,14 @@ bool Graphics::Initialize(SDL_Window* window)
 void Graphics::Update()
 {
 
-	if(renderTextures)
+	if(renderTextures && m_buffer != NULL & m_renderer != NULL)
 	{
-		SDL_DestroyTexture(m_bufferTexture);
+		
 		m_bufferTexture = SDL_CreateTextureFromSurface(m_renderer, m_buffer);
 		SDL_RenderCopy(m_renderer, m_bufferTexture, NULL, NULL);
 		SDL_RenderPresent(m_renderer);
+
+        SDL_DestroyTexture(m_bufferTexture);
 	}
 	
 	
