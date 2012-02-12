@@ -2,20 +2,19 @@
 #define XMLFILEREADER_H_
 
 #include <iostream>
-#include <string>
-
 using namespace std;
+
 #include "tinyxml.h"
 
 class XMLFileReader{
 public:
+	XMLFileReader(char* file_path);
 	XMLFileReader();
 	~XMLFileReader();
 
 	bool OpenFile(char* file_path);
-	bool CloseFile();
 
-	string GetToken(char* tag);
+	const char* GetToken(char* tag, unsigned int instance_of_tag = 0);
 
 private:
 	TiXmlDocument doc;

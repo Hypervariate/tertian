@@ -26,11 +26,13 @@ int main(int argc, char *argv[])
 	sdlApp.Initialize(g_SDLwindow);
 
 
-	XMLFileReader file_reader = XMLFileReader();
-	file_reader.OpenFile("Data/Animations/test.xml");
-	file_reader.GetToken("frame");
-	file_reader.GetToken("framerate");
-	file_reader.GetToken("behavior");
+	XMLFileReader file_reader = XMLFileReader("Data/Animations/test.xml");
+	//file_reader.OpenFile("Data/Animations/test.xml");
+	
+	for(int i = 0; i < 10; i++)
+		cout << file_reader.GetToken("frame", i) << endl;
+	
+	
 	
 
 
