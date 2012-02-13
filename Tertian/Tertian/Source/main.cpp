@@ -10,7 +10,7 @@
 
 #include "SDL_gfxPrimitives.h"
 #include "AnimationCollection.h"
-#include "CubeGrid.h"
+#include "SquareGrid.h"
 #include "XMLFileReader.h"
 
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 	ac.InsertAnimation("librarian_attack");
 	ac.InsertAnimation("librarian_idle");
 		
-	CubeGrid level = CubeGrid(5,4,3);
+	SquareGrid level = SquareGrid(5,4);
 	 //  Access array elements
 
    
@@ -106,12 +106,12 @@ int main(int argc, char *argv[])
 
 		Graphics::SetDrawColor();
 		for(int i = 0; i < level.GetSizeX(); i++)
-			for(int j = 0; j < level.GetSizeY(); j++)
-				for(int k = 0; k < level.GetSizeZ(); k++){
+			for(int j = 0; j < level.GetSizeY(); j++){
 					Graphics::DrawRect(block_size * i + block_size, block_size * j + block_size, block_size, block_size);
-					int value = level.GetCell(i,j,k);
-					Graphics::Print(value, block_size * i + block_size + k*8, block_size * j + block_size + k*8);
+					int value = level.GetCell(i,j);
+					Graphics::Print(value, block_size * i + block_size , block_size * j + block_size );
 				}
+		
 			
 
 		sdlApp.Update(timer.GetDt());

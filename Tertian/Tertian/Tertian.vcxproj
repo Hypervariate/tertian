@@ -98,6 +98,7 @@
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Mouse.cpp" />
     <ClCompile Include="Source\SDLApplication.cpp" />
+    <ClCompile Include="Source\SquareGrid.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\XMLFileReader.cpp" />
   </ItemGroup>
@@ -111,6 +112,7 @@
     <ClInclude Include="Source\LevelGrid.h" />
     <ClInclude Include="Source\Mouse.h" />
     <ClInclude Include="Source\SDLApplication.h" />
+    <ClInclude Include="Source\SquareGrid.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Utilities\GlobalDefines.h" />
     <ClInclude Include="Source\Utilities\MathUtils.h" />
