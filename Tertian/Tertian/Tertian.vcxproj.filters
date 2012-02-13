@@ -57,13 +57,13 @@
     <ClCompile Include="Source\XMLFileReader.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CubeGrid.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LevelGrid.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\SquareGrid.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CubeGrid.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,13 +104,13 @@
     <ClInclude Include="Source\XMLFileReader.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CubeGrid.h">
-      <Filter>Core\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\LevelGrid.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\SquareGrid.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CubeGrid.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,7 +14,7 @@ void SquareGrid::AllocateSquareGrid(unsigned int w, unsigned int h)
 	m_sizeX = w;
 	m_sizeY = h;
 	for(int i = 0; i < m_sizeX*m_sizeY; i++)
-		m_cells.push_back(i);
+		m_cells.push_back(0);
 }
 SquareGrid::~SquareGrid()
 {
